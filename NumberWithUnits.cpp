@@ -228,7 +228,7 @@ namespace ariel
 
     NumberWithUnits &NumberWithUnits::operator*=(double x)
     {
-        NumberWithUnits n_w_u(this->num *= x, this->unit);
+        this->num *= x;
         return *this;
     }
 
@@ -241,7 +241,6 @@ namespace ariel
 
     istream &operator>>(istream &input, NumberWithUnits &n)
     {
-        string bracket;
         string num;
         string unit;
         getline(input, num, '[');

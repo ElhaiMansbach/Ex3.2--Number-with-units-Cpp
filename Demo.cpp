@@ -177,14 +177,22 @@ int option2(string q2)
     string num2 = to_string(answers[num - 1]);
     sleep(1);
     istringstream iss{num2 + " [ USD ]"};
+    istringstream isst{num2 + " [ ILS ]"};
     NumberWithUnits a{1, "USD"};
     NumberWithUnits a1{4, "USD"};
     NumberWithUnits a2{3.33, "ILS"};
     NumberWithUnits a3{3.95, "USD"};
     NumberWithUnits a4{12.5, "ILS"};
-    iss >> a;
+    if (num2 == "4" || num2 == "3.95")
+    {
+        iss >> a;
+    }
+    else
+    {
+        isst >> a;
+    }
     cout << endl;
-    if (a >= a1 && a > a2 && a >= a3 && a >= a4)
+    if (a >= a1 && a > a2 && a > a3 && a > a4)
     {
         check_money(true, 1);
     }

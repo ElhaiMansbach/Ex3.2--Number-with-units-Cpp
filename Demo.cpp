@@ -183,7 +183,7 @@ int option2(string q2)
     NumberWithUnits a2{3.33, "ILS"};
     NumberWithUnits a3{3.95, "USD"};
     NumberWithUnits a4{12.5, "ILS"};
-    if (num2 == "4" || num2 == "3.95")
+    if (num == 1 || num == 3)
     {
         iss >> a;
     }
@@ -223,7 +223,7 @@ int option2(string q2)
     NumberWithUnits b3{360, "sec"};
     NumberWithUnits b4{36, "sec"};
     is >> b;
-    if (b == b2)
+    if (b == b2 && b2 < b1 && b2 > b3 && b2 > b4)
     {
         check_money(true, 2);
     }

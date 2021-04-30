@@ -17,7 +17,10 @@
 #include <thread>
 #include <chrono>
 #include <unistd.h>
-#include <stdlib.h>
+
+//#include <cmath>
+//#include <algorithm>
+//#include <stdlib.h>
 #include "NumberWithUnits.hpp"
 
 #define BOLDBLACK "\033[1m\033[30m"   /* Bold Black */
@@ -34,6 +37,8 @@ using namespace ariel;
 
 static string ans;
 static int money = 0;
+
+//double convert_unit(double n, const string& before, const string& after);
 
 void check_money(bool correct, int q)
 {
@@ -282,6 +287,60 @@ int option3(string q3)
     cout << endl;
     return 0;
 }
+//////////////////////////////////////////////////////////////////////////////////
+int option4(string q4)
+{
+    string ans1;
+    string ans2;
+    string new_unit;
+
+    cout << BOLDCYAN << "Enter number:" << endl;
+    cout << BOLDWHITE;
+    cin >> ans1;
+    sleep(1);
+    cout << endl;
+    cout << BOLDCYAN << "Enter the unit:" << endl;
+    cout << BOLDWHITE;
+    cin >> ans2;
+    sleep(1);
+    cout << endl;
+    istringstream iss{ans1 + " [ " + ans2 + " ]"};
+    NumberWithUnits a{1, "km"};
+    iss >> a;
+    cout << BOLDCYAN << "To which unit you want to change?" << endl;
+    cout << BOLDWHITE;
+    cin >> new_unit;
+    sleep(1);
+    double n1 = stod(ans1);
+    NumberWithUnits a1{NumberWithUnits::convert_unit(n1, ans2, new_unit), new_unit};
+    cout << BOLDGREEN << a1 << endl;
+    sleep(1);
+    cout << endl;
+    cout << BOLDYELLOW << "Do you want to keep practicing?" << endl;
+    cout << BOLDWHITE;
+    string ans3;
+    cin >> ans3;
+    cout << endl;
+    if (ans3 == "yes" || ans3 == "1")
+    {
+        option4(ans3);
+        sleep(1);
+    }
+    else
+    {
+        cout << BOLDCYAN << "Do you want to start playing?" << endl;
+        cout << BOLDWHITE;
+        string ans4;
+        cin >> ans4;
+        if (ans4 == "yes" || ans4 == "1")
+        {
+            cout << endl;
+            option1(ans3);
+            sleep(1);
+        }
+    }
+    return 0;
+}
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
 int main()
@@ -300,10 +359,13 @@ int main()
         cout << BOLDYELLOW << "1. Open questions" << endl;
         cout << BOLDYELLOW << "2. multiple choice question" << endl;
         cout << BOLDYELLOW << "3. True and false questions" << endl;
+        cout << endl;
+        cout << BOLDCYAN << "If you want to practice before the game press 4:" << endl;
+        cout << BOLDYELLOW << "4. Practice before the game" << endl;
         cout << BOLDWHITE << endl;
         cin >> ans;
         cout << endl;
-        if (ans == "1" || ans == "2" || ans == "3")
+        if (ans == "1" || ans == "2" || ans == "3" || ans == "4")
             break;
     }
     cout << BOLDMAGENTA << "Loading the game" << endl;
@@ -351,9 +413,13 @@ int main()
     {
         option1(ans);
     }
+    else if (ans == "2")
+    {
+        option2(ans);
+    }
     else
     {
-        ans == "2" ? option2(ans) : option3(ans);
+        ans == "3" ? option3(ans) : option4(ans);
     }
     sleep(1);
     return 0;

@@ -68,7 +68,7 @@ namespace ariel
     //     }
     }
 
-    double convert_unit(double n, const string& before, const string& after)
+    double NumberWithUnits::convert_unit(double n, const string& before, const string& after)
     {
         if (before == after)
         {
@@ -82,19 +82,19 @@ namespace ariel
     }
 
     //-------------------------//Six accounting operators-----------------------------
-    NumberWithUnits NumberWithUnits::operator+(const NumberWithUnits &n2)
+    NumberWithUnits NumberWithUnits::operator+(const NumberWithUnits &n2) const
     {
         double convert = convert_unit(n2.num, n2.unit, this->unit);
         return NumberWithUnits(this->num + convert, this->unit);
     }
 
-    NumberWithUnits NumberWithUnits::operator-(const NumberWithUnits &n2)
+    NumberWithUnits NumberWithUnits::operator-(const NumberWithUnits &n2) const
     {
         double convert = convert_unit(n2.num, n2.unit, this->unit);
         return NumberWithUnits(this->num - convert, this->unit);
     }
 
-    NumberWithUnits &NumberWithUnits::operator+=(const NumberWithUnits &n2)
+    NumberWithUnits &NumberWithUnits::operator+=(const NumberWithUnits &n2) 
     {
         double convert = convert_unit(n2.num, n2.unit, this->unit);
         this->num += convert;
@@ -119,11 +119,11 @@ namespace ariel
     }
 
     //--------------------------//Six comparison operators---------------------
-    bool operator>(const NumberWithUnits &n1, const NumberWithUnits &n2)
+    bool NumberWithUnits::operator>(const NumberWithUnits &n2) const
     {
-        double convert = convert_unit(n2.num, n2.unit, n1.unit);
+        double convert = convert_unit(n2.num, n2.unit, this->unit);
         bool flag = false;
-        if (n1.num > convert)
+        if (this->num > convert)
         {
             flag = true;
             return flag;
@@ -131,12 +131,12 @@ namespace ariel
         return flag;
     }
 
-    bool operator>=(const NumberWithUnits &n1, const NumberWithUnits &n2)
+    bool NumberWithUnits::operator>=(const NumberWithUnits &n2) const
     {
-        double convert = convert_unit(n2.num, n2.unit, n1.unit);
+        double convert = convert_unit(n2.num, n2.unit, this->unit);
         bool flag = false;
 
-        if (n1.num >= convert || abs(n1.num - convert) < EPSILON)
+        if (this->num >= convert || abs(this->num - convert) < EPSILON)
         {
             flag = true;
             return flag;
@@ -144,11 +144,11 @@ namespace ariel
         return flag;
     }
 
-    bool operator<(const NumberWithUnits &n1, const NumberWithUnits &n2)
+    bool NumberWithUnits::operator<(const NumberWithUnits &n2) const
     {
-        double convert = convert_unit(n2.num, n2.unit, n1.unit);
+        double convert = convert_unit(n2.num, n2.unit, this->unit);
         bool flag = false;
-        if (n1.num < convert)
+        if (this->num < convert)
         {
             flag = true;
             return flag;
@@ -156,11 +156,11 @@ namespace ariel
         return flag;
     }
 
-    bool operator<=(const NumberWithUnits &n1, const NumberWithUnits &n2)
+    bool NumberWithUnits::operator<=(const NumberWithUnits &n2) const
     {
-        double convert = convert_unit(n2.num, n2.unit, n1.unit);
+        double convert = convert_unit(n2.num, n2.unit, this->unit);
         bool flag = false;
-        if (n1.num <= convert || abs(n1.num - convert) < EPSILON)
+        if (this->num <= convert || abs(this->num - convert) < EPSILON)
         {
             flag = true;
             return flag;
@@ -168,11 +168,11 @@ namespace ariel
         return flag;
     }
 
-    bool operator==(const NumberWithUnits &n1, const NumberWithUnits &n2)
+    bool NumberWithUnits::operator==(const NumberWithUnits &n2) const
     {
-        double convert = convert_unit(n2.num, n2.unit, n1.unit);
+        double convert = convert_unit(n2.num, n2.unit, this->unit);
         bool flag = false;
-        if (n1.num == convert || abs(n1.num - convert) < EPSILON)
+        if (this->num == convert || abs(this->num - convert) < EPSILON)
         {
             flag = true;
             return flag;
@@ -180,11 +180,11 @@ namespace ariel
         return flag;
     }
 
-    bool operator!=(const NumberWithUnits &n1, const NumberWithUnits &n2)
+    bool NumberWithUnits::operator!=(const NumberWithUnits &n2) const
     {
-        double convert = convert_unit(n2.num, n2.unit, n1.unit);
+        double convert = convert_unit(n2.num, n2.unit, this->unit);
         bool flag = false;
-        if (n1.num != convert && !(abs(n1.num - convert) < EPSILON))
+        if (this->num != convert && !(abs(this->num - convert) < EPSILON))
         {
             flag = true;
             return flag;

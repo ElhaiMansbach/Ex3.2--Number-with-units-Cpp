@@ -7,7 +7,7 @@ VALGRIND_FLAGS=-v --leak-check=full --show-leak-kinds=all  --error-exitcode=99
 SOURCES=NumberWithUnits.cpp
 OBJECTS=$(subst .cpp,.o,$(SOURCES))
 
-run: test1 test2 test3
+run: test1 test2 test3 demo
 		./$^
 
 demo: Demo.o $(OBJECTS)

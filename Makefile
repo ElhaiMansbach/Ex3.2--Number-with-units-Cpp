@@ -11,7 +11,7 @@ run: test1 test2 test3 demo
 		./$^
 
 demo: Demo.o $(OBJECTS)
-	$(CXX) $(CXXFLAGS) $^ -o demo
+	$(CXX) $(CXXFLAGS) $^ -o 
 
 test1: TestRunner.o StudentTest1.o  $(OBJECTS)
 	$(CXX) $(CXXFLAGS) $^ -o $@
